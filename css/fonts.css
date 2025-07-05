@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "pyengchang";
+  src: url("../fonts/PyeongChang-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "pyengchang-bold";
+  src: url("../fonts/PyeongChang-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "yeongdo-Rg";
+  src: url("../fonts/Yeongdo-Regular.ttf") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "yeongdo-heavy";
+  src: url("../fonts/Yeongdo-Heavy.ttf") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
