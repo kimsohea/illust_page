@@ -19,12 +19,15 @@ const initApp = async () => {
     else bodyTag.classList.remove("is_main");
   };
 
+  let navFlg = false;
   const navBtn = document.querySelectorAll(".right_nav button");
   const navBtnArr = Array.from(document.querySelectorAll(".right_nav li"));
   const sectionArr = Array.from(document.querySelectorAll(".contents section"));
   const leftList = Array.from(document.querySelectorAll(".left_nav .nav_ul li"));
   navBtn.forEach((item) => {
     item.addEventListener("click", function () {
+      if (navFlg) return;
+      navFlg = true;
       const idx = navBtnArr.indexOf(this.parentElement);
       navBtnArr.forEach((btn) => btn.classList.remove("active"));
       sectionArr.forEach((sec) => sec.classList.remove("active"));
@@ -38,6 +41,7 @@ const initApp = async () => {
       } else mainCtrl(true);
 
       setTimeout(() => {
+        navFlg = false;
         leftNav.classList.add("active");
         sectionArr[idx].classList.add("active");
       }, 500);
