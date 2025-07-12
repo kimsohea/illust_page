@@ -1,3 +1,13 @@
+html body {
+  overflow: hidden;
+}
+
+.spot {
+  display: block;
+  border-radius: 100%;
+  background-color: #ff873d;
+}
+
 /* 우측 네비게이션 */
 .right_nav {
   position: fixed;
@@ -14,16 +24,45 @@
   z-index: 10;
 }
 
+.right_nav::after,
+.right_nav::before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 40px;
+  right: 0;
+  background: url("../img/round.svg") no-repeat center/ contain;
+}
+
+.right_nav::before {
+  top: -38px;
+}
+
+.right_nav::after {
+  bottom: -38px;
+  transform: rotate(-90deg);
+}
+
 .right_nav .header_ul {
   display: flex;
   flex-direction: column;
   row-gap: 40px;
 }
 
+.right_nav .header_ul::before {
+  position: absolute;
+  top: calc(-100% / 3);
+  left: 99.25px;
+  content: "";
+  width: 50px;
+  height: 100vh;
+  background: #fff;
+}
+
 .right_nav .header_ul svg {
   opacity: 0.3;
   fill: #616161;
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .header_ul a {
@@ -44,7 +83,7 @@
 /* 우측 네비게이션 모션 */
 .right_nav.active {
   transform: translate(0, -50%);
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .header_ul li.active svg {
@@ -68,14 +107,12 @@
   height: 100%;
   padding: 50px 0 50px 90px;
   z-index: 10;
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .left_nav .spot {
-  display: block;
   width: 43px;
   height: 43px;
-  border-radius: 100%;
-  background-color: #ff873d;
 }
 
 .left_nav .spot.top {
@@ -97,7 +134,7 @@
 .is_main .left_nav.active .spot.top,
 .left_nav.active .spot.top,
 .left_nav.active .spot.btm {
-  transition: transform 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
   transform: translate(0, 0);
 }
 
@@ -110,12 +147,16 @@
   opacity: 0;
   transform: scaleY(0);
   transform-origin: top center;
-  transition: opacity 0.5s cubic-bezier(0, 0, 0.6, 1.25), transform 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: opacity 0.5s cubic-bezier(0.68, -0.33, 0.265, 1.33), transform 0.5s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .left_nav.active .vertical_line {
   opacity: 1;
   transform: scaleY(1);
+}
+
+.is_main .left_nav.active .vertical_line {
+  transition-duration: 0.8s, 0.8s;
 }
 
 .left_nav .nav_ul {
@@ -136,7 +177,7 @@
 
 .left_nav .nav_ul li.active {
   opacity: 1;
-  transition: opacity 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: opacity 0.65s linear;
 }
 
 .left_nav .nav_ul h2 {
@@ -152,7 +193,7 @@
 }
 
 .left_nav.active .nav_ul {
-  transition: transform 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
   transform: translate(0, 0);
 }
 
@@ -161,7 +202,6 @@
   width: 230px;
   height: calc(100% - 250px);
   padding: 70px 0 70px 90px;
-  transition: none;
 }
 
 /* 메인일때 하단 문구 */
@@ -172,7 +212,7 @@
   width: 760px;
   height: 280px;
   transform: translate(0, 320px);
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
   font-family: "yeongdo-heavy", sans-serif;
   letter-spacing: -0.5px;
   font-size: 135px;
@@ -193,11 +233,9 @@
 /* 콘텐츠 */
 .contents {
   position: relative;
-  width: calc(100% - 380px);
+  width: calc(100% - 250px);
   height: 100vh;
-  margin-left: 350px;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  margin-left: 230px;
 }
 
 .contents > section {
@@ -208,13 +246,13 @@
   height: 100vh;
   padding: 50px 0;
   pointer-events: none;
-  transform: translateY(120vh);
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .contents > section.active {
-  transform: translateY(0);
   pointer-events: fill;
+  opacity: 1;
 }
 
 .contents > section svg {
@@ -227,15 +265,14 @@
   height: 100%;
 }
 
-/* 메인일 때 콘텐츠 모양 */
-.is_main .contents {
-  width: calc(100% - 250px);
-  margin-left: 230px;
-}
-
 /* 메인 콘텐츠 */
 .home {
-  overflow: hidden;
+  margin-left: 40px;
+}
+
+.home .home_tit {
+  position: absolute;
+  bottom: 20px;
 }
 
 .home .home_txt {
@@ -251,7 +288,7 @@
   color: #fff;
   background: url("../img/text_box_01.svg") no-repeat center/contain;
   transform: translate(0, -400px);
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
   font-family: "yeongdo-heavy", sans-serif;
   z-index: 2;
 }
@@ -269,7 +306,7 @@
   word-break: keep-all;
   color: #fff;
   transform: translate(-740px, 0);
-  transition: all 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: all 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
   z-index: 2;
 }
 
@@ -283,8 +320,44 @@
 }
 
 .home .img_back {
-  transform: scale(0.5);
-  transition: transform 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  position: relative;
+  width: calc(100% - 40px);
+  overflow: hidden;
+  border-radius: 80px 40px 20px 0;
+  transform: scale(0.5) translateY(100vh);
+  transform-origin: center bottom;
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
+}
+
+.home .img_back img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home .img_back svg {
+  position: absolute;
+  left: -1px;
+  bottom: 0;
+  width: 547px;
+  height: 360px;
+  z-index: 2;
+}
+
+.home .img_back svg path {
+  object-fit: fill;
+}
+
+.home .spot {
+  position: absolute;
+  top: 9%;
+  right: 4%;
+  width: 60px;
+  height: 60px;
+  transform: translate(0, -200px);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .home .circle {
@@ -292,7 +365,7 @@
   border-radius: 100%;
   border: 0.5px solid #fff;
   transform: scale(1) translate(0, 0);
-  transition: transform 0.5s cubic-bezier(0, 0, 0.6, 1.25);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .home .circle.top {
@@ -323,6 +396,10 @@
   transform: scale(1);
 }
 
+.home.active .spot {
+  transform: translate(0, 0);
+}
+
 .home.active .circle.top {
   transform: translate(-210px, 120px) scale(1.25);
 }
@@ -333,15 +410,22 @@
 
 /* 갤러리 */
 .gallery .frame {
-  width: calc(100% - 120px);
+  width: calc(100% - 255px);
   height: calc(100% - 120px);
   overflow-y: scroll;
   margin-top: 105px;
+  margin-left: 150px;
   scrollbar-width: thin;
+  transform: translate(0, 100vh);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
 }
 
 .gallery .frame::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.gallery.active .frame {
+  transform: translate(0, 0);
 }
 
 .gallery_list {
@@ -398,7 +482,7 @@
   border-radius: 25px;
   overflow: hidden;
   transform: scale(0.75);
-  transition: all 0.5s ease-out;
+  transition: all 0.65s ease-out;
   pointer-events: none;
   z-index: 5;
 }
@@ -426,6 +510,10 @@
 }
 
 /* 프로필 */
+.profile {
+  margin-left: 130px;
+}
+
 .profile .profile_txt {
   position: absolute;
   top: 160px;
@@ -437,6 +525,13 @@
   line-height: 26px;
   font-weight: 400;
   font-family: "pyengchang", sans-serif;
+  z-index: 2;
+  transform: translate(0, -400px);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
+}
+
+.profile.active .profile_txt {
+  transform: translate(0, 0);
 }
 
 .profile .profile_txt strong {
@@ -448,18 +543,25 @@
 
 .profile .resume_box {
   position: absolute;
-  left: 47px;
-  bottom: 70px;
-  width: 27.5%;
+  left: 2.75%;
+  bottom: 7.5%;
+  width: 22%;
   max-width: 380px;
-  height: 52%;
-  padding-top: 3.5%;
+  height: 50%;
+  padding-top: 4%;
   border-radius: 50px;
   background-color: #ffffff74;
   border: 2px solid #fff;
+  transform: translate(-400px, 0);
+  transition: transform 0.8s cubic-bezier(0.68, -0.33, 0.265, 1.33);
   text-align: center;
   color: #333;
   font-size: 14px;
+  z-index: 2;
+}
+
+.profile.active .resume_box {
+  transform: translate(0, 0);
 }
 
 .profile .resume_box > * {
@@ -509,8 +611,34 @@
 }
 
 .profile .img_back {
+  position: relative;
+  width: calc(100% - 130px);
   height: calc(100% - 80px);
   margin-top: 80px;
+  background-color: #2478ff;
+  overflow: hidden;
+  border-radius: 0 30px 50px 80px;
+}
+
+.profile .img_back .tit_box {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 600px;
+  height: 310px;
+}
+
+.profile .img_back .txt_box {
+  position: absolute;
+  left: 180px;
+  bottom: 0;
+  width: 100px;
+  height: 55px;
+  transform: rotate(180deg);
+}
+
+.contact {
+  margin-left: 150px;
 }
 
 @media (max-width: 1750px) {

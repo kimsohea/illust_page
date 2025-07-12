@@ -33,17 +33,22 @@ const initApp = async () => {
       sectionArr.forEach((sec) => sec.classList.remove("active"));
       leftList.forEach((tit) => tit.classList.remove("active"));
 
-      leftNav.classList.remove("active");
       this.parentElement.classList.add("active");
       if (idx > 0) {
+        if (isMainFlg) leftNav.classList.remove("active");
         mainCtrl(false);
         leftList[idx - 1].classList.add("active");
-      } else mainCtrl(true);
+      } else {
+        mainCtrl(true);
+        leftNav.classList.remove("active");
+      }
 
       setTimeout(() => {
-        navFlg = false;
-        leftNav.classList.add("active");
         sectionArr[idx].classList.add("active");
+        leftNav.classList.add("active");
+      }, 300);
+      setTimeout(() => {
+        navFlg = false;
       }, 500);
     });
   });
